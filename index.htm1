@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Uma surpresa para Monique</title>
+
+<style>
+*{box-sizing:border-box}
+
+body{
+  margin:0;
+  min-height:100vh;
+  overflow:hidden;
+  background:#030305;
+  color:#eee;
+  font-family:Georgia,serif;
+  display:flex;
+  align-items:center;
+  justify-content:center
+}
+
+body:before{
+  content:"";
+  position:fixed;
+  inset:0;
+  background:radial-gradient(circle,#321326 0,#09070b 48%,#000 100%);
+  opacity:.9
+}
+
+.card{
+  position:relative;
+  z-index:2;
+  width:min(90%,430px);
+  padding:38px 25px;
+  text-align:center;
+  border:1px solid #472238;
+  border-radius:25px;
+  background:rgba(8,6,10,.76);
+  box-shadow:0 0 60px rgba(160,20,90,.16)
+}
+
+.lock{
+  font-size:44px;
+  animation:pulse 2s infinite
+}
+
+h1{
+  font-size:30px;
+  margin:15px 0 8px;
+  letter-spacing:1px
+}
+
+.sub{
+  color:#b99eae;
+  font-size:16px;
+  line-height:1.5
+}
+
+button{
+  margin-top:24px;
+  border:1px solid #8b3d68;
+  border-radius:30px;
+  padding:13px 24px;
+  background:#130b12;
+  color:#fff;
+  font-size:16px;
+  cursor:pointer;
+  box-shadow:0 0 20px rgba(190,50,120,.15)
+}
+
+#secret{
+  display:none;
+  margin-top:24px;
+  animation:appear 1s ease
+}
+
+.age{
+  font-size:72px;
+  color:#e85b9b;
+  text-shadow:0 0 28px #a82c69;
+  font-weight:bold
+}
+
+.message{
+  font-size:18px;
+  line-height:1.65;
+  color:#eadce5
+}
+
+.heart{
+  position:fixed;
+  bottom:-30px;
+  z-index:1;
+  opacity:0;
+  animation:rise 8s linear forwards
+}
+
+@keyframes rise{
+  10%{opacity:.35}
+  100%{
+    transform:translateY(-110vh) rotate(25deg);
+    opacity:0
+  }
+}
+
+@keyframes pulse{
+  50%{
+    transform:scale(1.08);
+    text-shadow:0 0 25px #d33b81
+  }
+}
+
+@keyframes appear{
+  from{
+    opacity:0;
+    transform:translateY(12px)
+  }
+  to{
+    opacity:1;
+    transform:none
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="card">
+
+  <div class="lock">🔒</div>
+
+  <h1>Monique...</h1>
+
+  <div class="sub">
+    Você encontrou uma coisa que não era para passar despercebida.
+  </div>
+
+  <button id="secretBtn" onclick="openSecret()">
+    Descobrir o segredo
+  </button>
+
+  <div id="secret">
+
+    <div class="age">18</div>
+
+    <div class="message">
+      Então era isso... ❤️<br><br>
+
+      Hoje começa uma nova fase da sua vida.<br>
+
+      Espero que seus 18 anos tragam momentos inesquecíveis,
+      muitos motivos para sorrir e pessoas especiais ao seu lado.<br><br>
+
+      <b>Feliz aniversário, Monique! 🎂✨</b>
+    </div>
+
+  </div>
+
+</div>
+
+<script>
+
+function openSecret(){
+
+  document.getElementById('secretBtn').style.display='none';
+
+  document.getElementById('secret').style.display='block';
+
+  for(let i=0;i<35;i++){
+
+    setTimeout(()=>{
+
+      let h=document.createElement('div');
+
+      h.className='heart';
+
+      h.textContent=['♥','✦','♡']
+      [Math.floor(Math.random()*3)];
+
+      h.style.left=Math.random()*100+'vw';
+
+      h.style.fontSize=(12+Math.random()*18)+'px';
+
+      document.body.appendChild(h);
+
+      setTimeout(()=>h.remove(),8000);
+
+    },i*90);
+
+  }
+
+}
+
+</script>
+
+</body>
+</html>
